@@ -7,6 +7,10 @@ app.use(express.json())
 const models = require("../models/index")
 const transaksi = models.transaksi
 const detail_transaksi = models.detail_transaksi
+const {auth} = require("./login")
+
+//fungsi auth dijadikan middleware
+app.use(auth)
 
 //endpoint get transaksi
 app.get("/", async(request, response)=>{

@@ -7,7 +7,10 @@ app.use(express.json())
 const models = require("../models/index")
 const { request } = require("./paket")
 const users = models.users
+const {auth} = require("./login")
 
+//fungsi auth dijadikan middleware
+app.use(auth)
 
 app.get("/", async (request, response) => {
     let dataUser = await users.findAll()
@@ -57,7 +60,7 @@ app.put("/:id_user", (request,response)=>{
     users.update(data,{where: parameter})
     .then(result => {
         return response.json({
-            message: `Data Paket berhasil diubah!`,
+            message: `Data Users berhasil diubah!`,
             data:result
         })
     })
